@@ -20,12 +20,10 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-w -s" -o goapp
 # Small final image
 #
 FROM scratch
-# Copy timezones
-COPY --from=builder /usr/share/zoneinfo /usr/share/zoneinfo
 # Copy SSL certificates
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 # Copy go binary
 COPY --from=builder /app/goapp /app/goapp
 
 EXPOSE 8080
-ENTRYPOINT /app/goapp
+ENTRYPOINT ["/app/goapp"]
