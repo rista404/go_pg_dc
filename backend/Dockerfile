@@ -19,11 +19,14 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-w -s" -o goapp
 #
 # Small final image
 #
-FROM scratch
+# FROM scratch
+FROM alpine
+WORKDIR /app
 # Copy SSL certificates
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 # Copy go binary
-COPY --from=builder /app/goapp /app/goapp
+COPY --from=builder /app .
 
 EXPOSE 8080
+ENV GIN_MODE release
 ENTRYPOINT ["/app/goapp"]

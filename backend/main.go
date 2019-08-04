@@ -9,7 +9,7 @@ import (
 
 func main() {
 	r := gin.Default()
-	r.LoadHTMLGlob("templates/*")
+	r.LoadHTMLGlob("./templates/*")
 
 	r.GET("/", func(c *gin.Context) {
 		nums := []int{1, 2, 3, 4}
