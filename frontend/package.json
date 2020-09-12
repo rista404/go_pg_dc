@@ -7,6 +7,6 @@
   },
   "dependencies": {
     "micro": "^9.3.4",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.1"
   }
 }
